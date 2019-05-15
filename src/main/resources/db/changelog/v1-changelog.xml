@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+  xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+
+  <changeSet id="e99ee7d8-3f40-4a59-8364-bb848678d61a" author="uanderson">
+    <sql>CREATE TABLE pings (id UUID)</sql>
+    <sql>INSERT INTO pings VALUES ('d9573f3e-de90-4df5-a1f9-03a968092868')</sql>
+  </changeSet>
+</databaseChangeLog>

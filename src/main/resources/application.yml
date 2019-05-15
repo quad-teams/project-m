@@ -1,0 +1,9 @@
+---
+micronaut:
+  application:
+    name: project-m
+---
+datasources:
+  default:
+    url: ${APP_DATABASE_URL:`jdbc:sqlite:project-m.sqlite`}
+    driverClassName: org.sqlite.JDBC
