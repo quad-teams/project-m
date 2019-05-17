@@ -10,10 +10,10 @@ import java.util.UUID;
 public class PingController {
 
   @Inject
-  private PingService dualService;
+  private PingService pingService;
 
   @Get("/ping")
   public UUID get() {
-    return dualService.get();
+    return pingService.get();
   }
 }
