@@ -9,4 +9,26 @@
     <sql>CREATE TABLE pings (id UUID)</sql>
     <sql>INSERT INTO pings VALUES ('d9573f3e-de90-4df5-a1f9-03a968092868')</sql>
   </changeSet>
+
+  <changeSet id="f782eb9f-5be5-4438-b972-3fc8b6f781ed" author="uanderson">
+    <sql>
+      CREATE TABLE rows (
+        id TEXT,
+        timestamp TEXT,
+        coa TEXT,
+        cob TEXT,
+        coc TEXT,
+        cod TEXT,
+        coe TEXT,
+        cof TEXT,
+        cog NUMBER,
+        coh NUMBER,
+        coi NUMBER,
+        coj NUMBER,
+        cok TEXT,
+        col NUMBER,
+        com TEXT
+      )
+    </sql>
+  </changeSet>
 </databaseChangeLog>

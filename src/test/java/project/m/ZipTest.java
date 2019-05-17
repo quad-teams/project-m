@@ -1,6 +1,5 @@
 package project.m;
 
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -8,6 +7,9 @@ import org.junit.jupiter.api.Test;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.StandardCopyOption;
+
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.fail;
 
 public class ZipTest {
 
@@ -24,8 +26,8 @@ public class ZipTest {
   @DisplayName("Ensure the correct number of entries")
   void unzip_and_count() {
     Zip.unzip(temporaryZip).count()
-      .doOnSuccess(count -> Assertions.assertThat(count).isEqualTo(6))
-      .doOnError(error -> Assertions.fail(error.getMessage()))
+      .doOnSuccess(count -> assertThat(count).isEqualTo(6))
+      .doOnError(error -> fail(error.getMessage()))
       .subscribe();
   }
 }
