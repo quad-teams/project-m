@@ -3,6 +3,7 @@ package project.m;
 import io.reactivex.BackpressureStrategy;
 import io.reactivex.Flowable;
 
+import java.io.IOException;
 import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -27,9 +28,11 @@ public class Zip {
    * @return a flow of files
    */
   public static Flowable<Path> unzip(Path path) {
+    Objects.requireNonNull(path);
+
     try (var inputStream = Files.newInputStream(path)) {
       return unzip(inputStream);
-    } catch (Exception ex) {
+    } catch (IOException ex) {
       return Flowable.error(ex);
     }
   }
