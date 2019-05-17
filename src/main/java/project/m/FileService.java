@@ -58,6 +58,6 @@ public class FileService {
     )
       .skip(1)
       .buffer(batchSize)
-      .doOnNext(a -> importer.importLines(a));
+      .doOnNext(lines -> importer.importLines(lines));
   }
 }
