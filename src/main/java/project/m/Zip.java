@@ -3,7 +3,6 @@ package project.m;
 import io.reactivex.BackpressureStrategy;
 import io.reactivex.Flowable;
 
-import java.io.IOException;
 import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -18,7 +17,7 @@ import java.util.zip.ZipInputStream;
  */
 public class Zip {
 
-  public static final String PREFIX = "flowable";
+  public static final String PREFIX = "ZIP";
   public static final String EXTENSION = ".tmp";
 
   /**
@@ -27,14 +26,13 @@ public class Zip {
    * @param path to be unzipped
    * @return a flow of files
    */
-  public static Flowable<Path> unzip(Path path) {
+  public static Flowable<UnzippedFile> unzip(Path path) {
     Objects.requireNonNull(path);
-
-    try (var inputStream = Files.newInputStream(path)) {
-      return unzip(inputStream);
-    } catch (IOException ex) {
-      return Flowable.error(ex);
-    }
+    return Flowable.using(
+      () -> Files.newInputStream(path),
+      Zip::unzip,
+      InputStream::close
+    );
   }
 
   /**
@@ -43,21 +41,24 @@ public class Zip {
    * @param inputStream to be unzipped
    * @return a flow of files
    */
-  public static Flowable<Path> unzip(InputStream inputStream) {
+  public static Flowable<UnzippedFile> unzip(InputStream inputStream) {
     Objects.requireNonNull(inputStream);
 
     return Flowable.create(emitter -> {
       var zipInputStream = new ZipInputStream(inputStream);
-      var entry = zipInputStream.getNextEntry();
+      var zipEntry = zipInputStream.getNextEntry();
 
-      while (entry != null) {
-        if (!entry.isDirectory()) {
-          var entryPath = Files.createTempFile(PREFIX, EXTENSION);
-          Files.copy(zipInputStream, entryPath, StandardCopyOption.REPLACE_EXISTING);
-          emitter.onNext(entryPath);
+      while (zipEntry != null) {
+        if (zipEntry.isDirectory()) {
+          zipEntry = zipInputStream.getNextEntry();
+          continue;
         }
 
-        entry = zipInputStream.getNextEntry();
+        var entryPath = Files.createTempFile(PREFIX, EXTENSION);
+        Files.copy(zipInputStream, entryPath, StandardCopyOption.REPLACE_EXISTING);
+        emitter.onNext(new UnzippedFile(zipEntry.getName(), entryPath));
+
+        zipEntry = zipInputStream.getNextEntry();
       }
 
       zipInputStream.closeEntry();

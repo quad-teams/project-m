@@ -9,7 +9,6 @@ import javax.inject.Singleton;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
-import java.nio.file.Path;
 import java.util.List;
 
 /**
@@ -47,12 +46,12 @@ public class FileService {
    * Processes the content of the file extracting
    * the lines and importing it in batches.
    *
-   * @param file to have the lines extracted
+   * @param unzippedFile to have the lines extracted
    * @return a flow with the batch
    */
-  private Flowable<List<String>> processContent(Path file) {
+  private Flowable<List<String>> processContent(UnzippedFile unzippedFile) {
     return Flowable.using(
-      () -> new BufferedReader(new FileReader(file.toFile())),
+      () -> new BufferedReader(new FileReader(unzippedFile.getFile())),
       reader -> Flowable.fromIterable(() -> reader.lines().iterator()),
       BufferedReader::close
     )
