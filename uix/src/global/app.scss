@@ -23,6 +23,9 @@
 @import "@material/top-app-bar/mdc-top-app-bar";
 @import "@material/typography/mdc-typography";
 
+@import "~dropzone/dist/basic.css";
+@import "~dropzone/dist/dropzone.css";
+
 * {
   --mdc-theme-primary: #1c7ddb;
   --mdc-theme-secondary: #e6f1fc;

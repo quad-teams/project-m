@@ -1,0 +1,10 @@
+.app-root #main-content {
+  display: flex;
+  justify-content: center;
+  padding-top: 40px;
+}
+
+.app-root #main-content-wrapper {
+  width: 100%;
+  max-width: 1280px;
+}

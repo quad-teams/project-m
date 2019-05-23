@@ -13,58 +13,60 @@ import '@stencil/state-tunnel';
 
 export namespace Components {
 
-  interface AppHome {}
-  interface AppHomeAttributes extends StencilHTMLAttributes {}
+  interface MDashboard {}
+  interface MDashboardAttributes extends StencilHTMLAttributes {}
 
-  interface AppProfile {}
-  interface AppProfileAttributes extends StencilHTMLAttributes {}
+  interface MRoot {}
+  interface MRootAttributes extends StencilHTMLAttributes {}
 
-  interface AppRoot {}
-  interface AppRootAttributes extends StencilHTMLAttributes {}
+  interface MUploadModal {
+    'open': () => void;
+  }
+  interface MUploadModalAttributes extends StencilHTMLAttributes {}
 }
 
 declare global {
   interface StencilElementInterfaces {
-    'AppHome': Components.AppHome;
-    'AppProfile': Components.AppProfile;
-    'AppRoot': Components.AppRoot;
+    'MDashboard': Components.MDashboard;
+    'MRoot': Components.MRoot;
+    'MUploadModal': Components.MUploadModal;
   }
 
   interface StencilIntrinsicElements {
-    'app-home': Components.AppHomeAttributes;
-    'app-profile': Components.AppProfileAttributes;
-    'app-root': Components.AppRootAttributes;
+    'm-dashboard': Components.MDashboardAttributes;
+    'm-root': Components.MRootAttributes;
+    'm-upload-modal': Components.MUploadModalAttributes;
   }
 
 
-  interface HTMLAppHomeElement extends Components.AppHome, HTMLStencilElement {}
-  var HTMLAppHomeElement: {
-    prototype: HTMLAppHomeElement;
-    new (): HTMLAppHomeElement;
+  interface HTMLMDashboardElement extends Components.MDashboard, HTMLStencilElement {}
+  var HTMLMDashboardElement: {
+    prototype: HTMLMDashboardElement;
+    new (): HTMLMDashboardElement;
   };
 
-  interface HTMLAppProfileElement extends Components.AppProfile, HTMLStencilElement {}
-  var HTMLAppProfileElement: {
-    prototype: HTMLAppProfileElement;
-    new (): HTMLAppProfileElement;
+  interface HTMLMRootElement extends Components.MRoot, HTMLStencilElement {}
+  var HTMLMRootElement: {
+    prototype: HTMLMRootElement;
+    new (): HTMLMRootElement;
   };
 
-  interface HTMLAppRootElement extends Components.AppRoot, HTMLStencilElement {}
-  var HTMLAppRootElement: {
-    prototype: HTMLAppRootElement;
-    new (): HTMLAppRootElement;
+  interface HTMLMUploadModalElement extends Components.MUploadModal, HTMLStencilElement {}
+  var HTMLMUploadModalElement: {
+    prototype: HTMLMUploadModalElement;
+    new (): HTMLMUploadModalElement;
   };
 
   interface HTMLElementTagNameMap {
-    'app-home': HTMLAppHomeElement
-    'app-profile': HTMLAppProfileElement
-    'app-root': HTMLAppRootElement
+    'm-dashboard': HTMLMDashboardElement
+    'm-root': HTMLMRootElement
+    'm-upload-modal': HTMLMUploadModalElement
   }
 
   interface ElementTagNameMap {
-    'app-home': HTMLAppHomeElement;
-    'app-profile': HTMLAppProfileElement;
-    'app-root': HTMLAppRootElement;
+    'm-dashboard': HTMLMDashboardElement;
+    'm-root': HTMLMRootElement;
+    'm-upload-modal': HTMLMUploadModalElement;
   }
 
 
