@@ -207,7 +207,7 @@
     <liquibase.url>jdbc:sqlite:project-m.sqlite</liquibase.url>
     <exec.mainClass>project.m.Application</exec.mainClass>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <jdk.version>12</jdk.version>
+    <jdk.version>11</jdk.version>
   </properties>
 </project>
 
